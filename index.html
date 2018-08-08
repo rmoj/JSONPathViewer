@@ -26,7 +26,7 @@
     run();
 
     function run() {
-      hop(obj, 0, 'root');
+      hop(arr, 0, 'root');
     }
 
     function p(...args) {
@@ -49,9 +49,11 @@
       if (node === Object(node)) {
 
         if (Array.isArray(node)) {
-          p('node ia an array');
-          var children = node.values();
-          p(children);
+
+          p('node is an array');
+          var children = Object.keys(node[0]);
+          p('children: ' + children);
+
         } else {
           p('node is an object');
           var children = Object.keys(node);
