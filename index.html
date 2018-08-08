@@ -21,6 +21,8 @@
 
     var obj = { animal1: { dog: { one: 'puppy', two: 'pup', three: 'mutt' }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } };
 
+    var arr = [{ quokka: 'joey' }, { lion: 'cub' }, { pig: 'piglet' }];
+
     run();
 
     function run() {
@@ -38,8 +40,6 @@
       $('#output').append(dv);
     }
 
-
-
     function hop(node, level, path) {
 
       if (node == null) {
@@ -47,15 +47,22 @@
       }
 
       if (node === Object(node)) {
-        p('node is an object');
-        var children = Object.keys(node);
 
-        for (var i = 0; i < children.length; i++) {
-          var child = node[children[i]];
-          var nodePath = path + '.' + children[i];
-          p('level: ' + level + '  path: ' + nodePath);
-          showPath(level, nodePath);
-          hop(child, level + 1, nodePath);
+        if (Array.isArray(node)) {
+          p('node ia an array');
+          var children = node.values();
+          p(children);
+        } else {
+          p('node is an object');
+          var children = Object.keys(node);
+
+          for (var i = 0; i < children.length; i++) {
+            var child = node[children[i]];
+            var nodePath = path + '.' + children[i];
+            p('level: ' + level + '  path: ' + nodePath);
+            showPath(level, nodePath);
+            hop(child, level + 1, nodePath);
+          }
         }
 
       } else {
