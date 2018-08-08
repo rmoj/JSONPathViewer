@@ -99,8 +99,7 @@ function hop(node, level, path) {
     for (var i = 0; i < children.length; i++) {
       var child = newNode[children[i]];
       var nodePath = path + addToPath + '.' + children[i];
-      p('level: ' + level + '  path: ' + nodePath);
-      showPath(level, nodePath);
+      console.log('level: ' + level + '  path: ' + nodePath);
       hop(child, level + 1, nodePath);
     }
   } else {
