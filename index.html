@@ -19,14 +19,16 @@
   <script type="text/javascript">
 
 
-    var obj = { animal1: { dog: { one: 'puppy', two: 'pup', three: 'mutt' }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } };
+    var obj = { animal1: { dog: { one: 'puppy', two: 'pup', three: { twenty: 'mutt' } }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } };
 
     var arr = [{ quokka: 'joey' }, { lion: 'cub' }, { pig: 'piglet' }];
+
+    var arr2 = [{ animal1: { dog: { one: 'puppy', two: 'pup', three: 'mutt' }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } }];
 
     run();
 
     function run() {
-      hop(arr, 0, 'root');
+      hop(obj, 0, 'root');
     }
 
     function p(...args) {
@@ -50,23 +52,27 @@
 
         if (Array.isArray(node)) {
 
-          p('node is an array');
           var children = Object.keys(node[0]);
-          p('children: ' + children);
 
         } else {
-          p('node is an object');
+
           var children = Object.keys(node);
 
-          for (var i = 0; i < children.length; i++) {
-            var child = node[children[i]];
-            var nodePath = path + '.' + children[i];
-            p('level: ' + level + '  path: ' + nodePath);
-            showPath(level, nodePath);
-            hop(child, level + 1, nodePath);
-          }
+          // for (var i = 0; i < children.length; i++) {
+          //   var child = node[children[i]];
+          //   var nodePath = path + '.' + children[i];
+          //   p('level: ' + level + '  path: ' + nodePath);
+          //   showPath(level, nodePath);
+          //   hop(child, level + 1, nodePath);
         }
 
+        for (var i = 0; i < children.length; i++) {
+          var child = node[children[i]];
+          var nodePath = path + '.' + children[i];
+          p('level: ' + level + '  path: ' + nodePath);
+          showPath(level, nodePath);
+          hop(child, level + 1, nodePath);
+        }
       } else {
         p('done');
       }
