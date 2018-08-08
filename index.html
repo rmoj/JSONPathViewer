@@ -9,23 +9,59 @@
   <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
   <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> -->
   <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script> -->
 </head>
 
 <body>
+  <div id="output"></div>
+
   <script type="text/javascript">
+
+
+    var obj = { animal1: { dog: { one: 'puppy', two: 'pup', three: 'mutt' }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } };
+
+    run();
+
+    function run() {
+      hop(obj, 0, 'root');
+    }
+
     function p(...args) {
       console.log(...args);
     }
 
-    var obj = { animal1: { dog: { 1: 'puppy', 2: 'pup', 3: 'mutt' }, cat: 'kitten' }, animal2: { quokka: 'joey', lion: 'cub' }, animal3: { pig: 'piglet', horse: 'pony' } };
+    function showPath(level, path) {
+      var nbsp = "\u00A0";
+      var dv = $('<div>')
+      dv.text('level: ' + level + nbsp + nbsp + ' path: ' + path);
+      $('#output').append(dv);
+    }
+
+
 
     function hop(node, level, path) {
 
       if (node == null) {
         return;
       }
+
+      if (node === Object(node)) {
+        p('node is an object');
+        var children = Object.keys(node);
+
+        for (var i = 0; i < children.length; i++) {
+          var child = node[children[i]];
+          var nodePath = path + '.' + children[i];
+          p('level: ' + level + '  path: ' + nodePath);
+          showPath(level, nodePath);
+          hop(child, level + 1, nodePath);
+        }
+
+      } else {
+        p('done');
+      }
+
     }
 
   </script>
