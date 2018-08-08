@@ -5,22 +5,18 @@
  * 
  */
 
-function getJson() {
-  var searchTerm = 'quokka';
-  var limit = 10;
-  var rating = 'G';
-  var apiKey = 'Xon9MP7X2uR0jVetMBZoD8fQeb5hPodw';
-  var queryURL =
-    'https://api.giphy.com/v1/gifs/search?api_key=' +
-    apiKey +
-    '&q=' +
-    searchTerm +
-    '&limit=' +
-    limit +
-    '&offset=0&rating=' +
-    rating +
-    '&lang=en';
+$('#submit').on('click', function() {
+  event.preventDefault();
 
+  var qURL = $('#queryURL-input')
+    .val()
+    .trim();
+  if (qURL != '') {
+    getJson(qURL);
+  }
+});
+
+function getJson(queryURL) {
   $.ajax({
     url: queryURL,
     method: 'GET'
@@ -54,7 +50,7 @@ function hop(node, level, path) {
     children.forEach(function(element) {
       var child = newNode[element];
       var nodePath = path + addToPath + '.' + element;
-      p('level: ' + level + '  path: ' + nodePath);
+      console.log('level: ' + level + '  path: ' + nodePath);
       showPath(level, nodePath);
       hop(child, level + 1, nodePath);
     });
