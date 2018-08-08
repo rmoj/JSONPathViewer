@@ -28,7 +28,7 @@
     run();
 
     function run() {
-      hop(obj, 0, 'root');
+      hop(arr2, 0, 'root');
     }
 
     function p(...args) {
@@ -43,6 +43,7 @@
     }
 
     function hop(node, level, path) {
+      var addToPath;
 
       if (node == null) {
         return;
@@ -52,23 +53,20 @@
 
         if (Array.isArray(node)) {
 
-          var children = Object.keys(node[0]);
+          var newNode = node[0];
+          var children = Object.keys(newNode);
+          var addToPath = '[0]';
 
         } else {
+          var newNode = node;
+          var children = Object.keys(newNode);
+          var addToPath = '';
 
-          var children = Object.keys(node);
-
-          // for (var i = 0; i < children.length; i++) {
-          //   var child = node[children[i]];
-          //   var nodePath = path + '.' + children[i];
-          //   p('level: ' + level + '  path: ' + nodePath);
-          //   showPath(level, nodePath);
-          //   hop(child, level + 1, nodePath);
         }
 
         for (var i = 0; i < children.length; i++) {
-          var child = node[children[i]];
-          var nodePath = path + '.' + children[i];
+          var child = newNode[children[i]];
+          var nodePath = path + addToPath + '.' + children[i];
           p('level: ' + level + '  path: ' + nodePath);
           showPath(level, nodePath);
           hop(child, level + 1, nodePath);
