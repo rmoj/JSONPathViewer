@@ -5,6 +5,34 @@
  * 
  */
 
+function getJson() {
+  var searchTerm = 'quokka';
+  var limit = 10;
+  var rating = 'G';
+  var apiKey = 'Xon9MP7X2uR0jVetMBZoD8fQeb5hPodw';
+  var queryURL =
+    'https://api.giphy.com/v1/gifs/search?api_key=' +
+    apiKey +
+    '&q=' +
+    searchTerm +
+    '&limit=' +
+    limit +
+    '&offset=0&rating=' +
+    rating +
+    '&lang=en';
+
+  $.ajax({
+    url: queryURL,
+    method: 'GET'
+  })
+    .then(function(response) {
+      hop(response, 0, 'response');
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+
 function hop(node, level, path) {
   var addToPath, newNode;
 
