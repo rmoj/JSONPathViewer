@@ -29,6 +29,13 @@ function getJson(queryURL) {
     });
 }
 
+function showPath(level, path) {
+  var nbsp = '\u00A0';
+  var dv = $('<div>');
+  dv.text('level: ' + level + nbsp + nbsp + ' path: ' + path);
+  $('#output').append(dv);
+}
+
 function hop(node, level, path) {
   var addToPath, newNode;
 
