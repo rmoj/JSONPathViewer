@@ -40,6 +40,7 @@ function hop(node, level, path) {
   var addToPath, newNode, nodePath;
 
   if (node == null) {
+    console.log('Null object');
     return;
   }
 
@@ -57,12 +58,10 @@ function hop(node, level, path) {
     children.forEach(function(element) {
       var child = newNode[element];
       nodePath = path + addToPath + '.' + element;
-      console.log('level: ' + level + '  path: ' + nodePath);
-      //showPath(level, nodePath);  //enable this to show all nodes
+      //showPath(level, nodePath);  //enable this to show all child nodes
       hop(child, level + 1, nodePath);
     });
   } else {
     showPath(level, path);
-    console.log('done');
   }
 }
