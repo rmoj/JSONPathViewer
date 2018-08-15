@@ -5,7 +5,7 @@
  * 
  */
 
-$('#submit').on('click', function() {
+$('#submit').on('click', function(event) {
   event.preventDefault();
 
   var qURL = $('#queryURL-input')
@@ -16,17 +16,28 @@ $('#submit').on('click', function() {
   }
 });
 
+$('#reset').on('click', function(event) {
+  $('#input').html('');
+  $('#output').html('');
+});
+
 function getJson(queryURL) {
   $.ajax({
     url: queryURL,
     method: 'GET'
   })
     .then(function(response) {
+      prettifyJson(response);
       hop(response, 0, 'response');
     })
     .catch(function(error) {
       console.log(error);
     });
+}
+
+function prettifyJson(json) {
+  var text = JSON.stringify(json, null, 4);
+  $('#input').html('<pre>' + text + '</pre>');
 }
 
 function showPath(level, path) {
@@ -62,6 +73,7 @@ function hop(node, level, path) {
       hop(child, level + 1, nodePath);
     });
   } else {
+    console.log(path);
     showPath(level, path);
   }
 }

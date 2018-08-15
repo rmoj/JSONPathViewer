@@ -4,42 +4,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-  <title>Document</title>
-  <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+
+  <title>JSONPathViewer</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-  <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.8.0-rc4/beautify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.8.0-rc4/beautify-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.8.0-rc4/beautify-html.min.js"></script>
+
 </head>
 
 <body>
-  <div class="container">
-
-    <div class="level">
-      <div class="level-item has-centered-text">
-        <h1 class="title">JSONPathViewer</h1>
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-centered">
+          JSONPathViewer
+        </h1>
+        <h2 class="subtitle has-text-centered">
+          Display end node paths
+        </h2>
       </div>
     </div>
-    <div class="box">
+  </section>
+
+  <section>
+    <div class="section box">
       <form class="level">
+
         <input type="text" class="input is-primary is-normal" id="queryURL-input" placeholder="Paste query URL here:">
+
         <input class="button is-primary" id="submit" type="submit" value="Submit">
+        <input class="button is-warning" id="reset" type="reset" value="Reset">
+
       </form>
-
-
-      <div class="level">
-        <div class="level-item">
-          <textarea class="textarea"></textarea>
-        </div>
-        <div class="level-item" id="output"></div>
+      <div>
+        <span class="tag is-info">JSON</span>
       </div>
+      <div class="section box">
 
+        <div id="input" class="is-size-6 is-clipped"></div>
+
+      </div>
+      <div>
+        <span class="tag is-primary ">Path</span>
+      </div>
+      <div class="section box is-primary">
+
+
+        <div id="output" class="is-size-6"></div>
+
+      </div>
     </div>
-  </div>
+  </section>
 
-  <script src="jsonpathviewer.js"></script>
+  <script src="jsonpathviewer.js "></script>
 </body>
 
 </html>
